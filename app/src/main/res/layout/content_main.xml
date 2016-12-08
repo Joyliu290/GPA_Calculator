@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.joyli.firstproject.MainActivity"
+    tools:showIn="@layout/activity_main"
+    android:touchscreenBlocksFocus="false"
+    tools:textAlignment="center">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:text="GPA Calculator"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView3"
+                android:textAlignment="center"
+                android:textSize="25sp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/courseweighttxt"
+                android:hint="Enter Course 1 Weight "
+                android:editable="false"
+                android:layout_below="@+id/textView3"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:ems="10"
+                android:id="@+id/coursepercentagetxt"
+                android:hint="Enter Course 1 Percentage"
+                android:layout_below="@+id/courseweighttxt"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/courseweighttxt2"
+                android:hint="Enter Course 2 Weight"
+                android:singleLine="false"
+                android:layout_above="@+id/coursepercentagetxt2"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:ems="10"
+                android:id="@+id/coursepercentagetxt2"
+                android:hint="Enter Course 2 Percentage"
+                android:layout_above="@+id/calbtn"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/courseweighttxt3"
+                android:hint="Enter Course 3 Weight" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:ems="10"
+                android:id="@+id/coursepercentagetxt3"
+                android:hint="Enter Course 3 Percentage" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/courseweighttxt4"
+                android:hint="Enter Course 4 Weight" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:ems="10"
+                android:id="@+id/coursepercentagetxt4"
+                android:hint="Enter Course 4 Percentage" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/courseweighttxt5"
+                android:hint="Enter Course 5 Weight" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:ems="10"
+                android:id="@+id/coursepercentagetxt5"
+                android:hint="Enter Course 5 Percentage" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="0"
+                tools:textAlignment="center"
+                android:textSize="36sp"
+                android:textAllCaps="false"
+                android:id="@+id/totalview"
+                android:layout_below="@+id/calbtn"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="19dp" />
+
+            <Button
+                android:text="CALCULATE"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/calbtn"
+                android:background="@android:color/holo_blue_light"
+                tools:textColor="#ffffff"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:text="Record this GPA? "
+                android:layout_width="match_parent"
+                android:id="@+id/decision"
+                android:layout_height="50dp"
+                android:textSize="25sp" />
+
+            <Button
+                android:text="YES"
+                android:layout_height="50dp"
+                android:id="@+id/button_database"
+                android:layout_width="120dp"
+                android:onClick="SQLdatabaseActivityClick"/>
+
+            <Button
+                android:text="No"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:id="@+id/button_no"
+                android:onClick="ExitScreenClick"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>
