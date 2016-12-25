@@ -130,6 +130,17 @@
                 android:id="@+id/coursepercentagetxt5"
                 android:hint="Enter Course 5 Percentage" />
 
+            <Button
+                android:text="CALCULATE"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/calbtn"
+                android:background="@android:color/holo_blue_light"
+                tools:textColor="#ffffff"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -142,17 +153,6 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_marginTop="19dp" />
-
-            <Button
-                android:text="CALCULATE"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/calbtn"
-                android:background="@android:color/holo_blue_light"
-                tools:textColor="#ffffff"
-                android:layout_centerVertical="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
 
             <TextView
                 android:text="Record this GPA? "
@@ -167,6 +167,12 @@
                 android:id="@+id/button_database"
                 android:layout_width="120dp"
                 android:onClick="SQLdatabaseActivityClick"/>
+
+            <Button
+                android:text="YES AND SHOW ME THE LIST"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:id="@+id/button_view" />
 
             <Button
                 android:text="No"
