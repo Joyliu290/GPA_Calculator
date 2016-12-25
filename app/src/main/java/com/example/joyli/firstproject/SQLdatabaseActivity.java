@@ -1,10 +1,15 @@
 package com.example.joyli.firstproject;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.TextView;
+
+//Created by Joy on 2016-12-22
 
 public class SQLdatabaseActivity extends SQLiteOpenHelper {
 
@@ -32,6 +37,32 @@ public class SQLdatabaseActivity extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS" + TABLE_NAME);
         onCreate(sqLiteDatabase);
     }
+
+    public boolean addData (String item1) {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_2, item1);
+
+        long result = sqLiteDatabase.insert(TABLE_NAME, null, contentValues);
+
+        //if data is inserted incorrectly it will return a -1
+
+        if (result ==-1) {
+            return false;
+        }
+        else {
+            return true;
+        }
+
+    }
+
+    public Cursor getListContents (){
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        Cursor data = sqLiteDatabase.rawQuery("SELECT * FROM" + TABLE_NAME, null);
+        return data;
+    }
+
+
 
 
 }
