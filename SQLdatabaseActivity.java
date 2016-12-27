@@ -5,16 +5,20 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+//Created by Joy on 2016-12-22
+
 public class SQLdatabaseActivity extends SQLiteOpenHelper {
 
-    public static final String DATABASE_NAME = "GPA Database";
-    public static final String TABLE_NAME = "GPA TABLE";
-    public static final String COL_1 = "Entry";
-    public static final String COL_2 = "GPA";
+    public static final String DATABASE_NAME = "mylist.db";
+    public static final String TABLE_NAME = "mylist_data";
+    public static final String COL_1 = "ID";
+    public static final String COL_2 = "ITEM1";
 
 
 
@@ -23,17 +27,17 @@ public class SQLdatabaseActivity extends SQLiteOpenHelper {
 
 
     @Override
-    public void onCreate(SQLiteDatabase sqLiteDatabase) {
+    public void onCreate(SQLiteDatabase db) {
 
-        String createTable = "CREATE TABLE " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMET." + " ITEM1 TEXT)";
-        sqLiteDatabase.execSQL(createTable);
+        String createTable = "CREATE TABLE " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, " + " ITEM1 TEXT)";
+        db.execSQL(createTable);
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS GPA" + TABLE_NAME);
-        onCreate(sqLiteDatabase);
+        db.execSQL("DROP IF TABLE EXISTS " + TABLE_NAME);
+        onCreate(db);
     }
 
     public boolean addData (String item1) {
@@ -45,7 +49,7 @@ public class SQLdatabaseActivity extends SQLiteOpenHelper {
 
         //if data is inserted incorrectly it will return a -1
 
-        if (result ==-1) {
+        if (result == -1) {
             return false;
         }
         else {
@@ -56,7 +60,7 @@ public class SQLdatabaseActivity extends SQLiteOpenHelper {
 
     public Cursor getListContents (){
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor data = db.rawQuery("SELECT * FROM" + TABLE_NAME, null);
+        Cursor data = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
         return data;
     }
 
