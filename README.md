@@ -8,6 +8,6 @@ Below are the steps to see the main Java codes:
  2. Click "java", then "com", then "example"
  3. Select "joyli", then "firstproject"
 
-Step 3 will take you to a drop-list of all the java files for all the activities. 
+Step 3 will take you to a drop-list of all the java files for all the classes. 
 
 For Version 2, I plan to record the date of entry of each data, and replace the date with the "entry number" in the listview, and add a button that clears all the data. 
