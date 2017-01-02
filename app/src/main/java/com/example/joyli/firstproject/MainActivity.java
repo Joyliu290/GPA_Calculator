@@ -27,7 +27,8 @@ public class MainActivity extends AppCompatActivity {
     SQLdatabaseActivity myDB;
     Button button_database, button_view;
 
-    public static Button button_no;
+    private static Button button_no;
+
 
     TextView totalview;
     EditText courseweighttxt;
@@ -53,11 +54,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        onClickButtonListener();
 
 
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
 
 
         totalview = (TextView) findViewById(R.id.totalview);
@@ -250,32 +251,6 @@ public class MainActivity extends AppCompatActivity {
         );
 
 
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        button_view = (Button) findViewById(R.id.button_view);
-        myDB = new SQLdatabaseActivity(this);
-
-        button_database = (Button) findViewById(R.id.button_database);
-
-        button_database.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String newEntry = totalview.getText().toString();
-                if (totalview.length() != 0) {
-                    AddData(newEntry);
-                    totalview.setText("");
-                } else {
-                    Toast.makeText(MainActivity.this, "CALCULATION ERROR!", Toast.LENGTH_LONG).show();
-                }
-            }});
-
-        button_view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent (MainActivity.this, ViewList.class);
-                startActivity(intent);
-            }
-        });
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
@@ -339,6 +314,55 @@ public class MainActivity extends AppCompatActivity {
         AppIndex.AppIndexApi.end(client, getIndexApiAction());
         client.disconnect();
     }
+
+    public void onClickButtonListener() {
+
+        myDB = new SQLdatabaseActivity(this);
+
+        button_database = (Button) findViewById(R.id.button_database);
+
+        button_database.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String newEntry = totalview.getText().toString();
+                if (totalview.length() != 0) {
+                    AddData(newEntry);
+                    totalview.setText("");
+                } else {
+                    Toast.makeText(MainActivity.this, "CALCULATION ERROR!", Toast.LENGTH_LONG).show();
+                }
+
+
+            }});
+
+
+        button_view = (Button) findViewById(R.id.button_view);
+        button_view.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent viewlist = new Intent ("com.example.joyli.firstproject.ViewList");
+                        startActivity(viewlist);
+                    }
+                }
+        );
+
+        button_no = (Button) findViewById(R.id.button_no);
+        button_no.setOnClickListener(
+                new View.OnClickListener() {
+
+                    @Override
+                    public void onClick (View v) {
+                        Intent exit_screen = new Intent ("com.example.joyli.firstproject.Exitscreen");
+                        startActivity(exit_screen);
+                    }
+                }
+        );
+    }
+
+
+
+
 
 
     public void AddData (String newEntry) {

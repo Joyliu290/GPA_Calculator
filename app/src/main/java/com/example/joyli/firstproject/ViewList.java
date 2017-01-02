@@ -2,16 +2,19 @@ package com.example.joyli.firstproject;
 
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 import android.support.v7.app.AppCompatActivity;
+
+import org.w3c.dom.Text;
 
 
 /**
@@ -21,29 +24,57 @@ import android.support.v7.app.AppCompatActivity;
 public class ViewList extends AppCompatActivity {
 
    SQLdatabaseActivity myDB;
+    ArrayList<User> userList;
+    User user;
 
     @Override
-    protected void onCreate (Bundle savedInstanceState) {
+    protected void onCreate (@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sqldatabase);
+        setContentView(R.layout.activity_view_list);
+
 
         ListView listview = (ListView) findViewById(R.id.listview);
         myDB = new SQLdatabaseActivity(this);
 
+
+        //Header for ListView
+        TextView textView = new TextView(this);
+        textView.setText("Entry                  GPA");
+        listview.addHeaderView(textView);
+
+
         //populate an ArrayList<String> from the database and then view it
-        ArrayList<String>theList = new ArrayList<>();
+        userList = new ArrayList<>();
         Cursor data = myDB.getListContents();
-        if (data.getCount()==0) {
+        int numRows = data.getCount();
+        if (numRows==0) {
             Toast.makeText(this, "There are no contents in this list!", Toast.LENGTH_LONG).show();
 
         }
         else {
+            int i =0;
             while (data.moveToNext()) {
-                theList.add(data.getString(1));
-                ListAdapter listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, theList);
-                listview.setAdapter(listAdapter);
+
+                user = new User(data.getString(0), data.getString(1));
+
+                userList.add(i, user);
+
+                System.out.println(data.getString(0)+ "" + data.getString(1));
+                System.out.println(userList.get(i).getEntry());
+                i++;
+
             }
+
+            TwoColumn_ListAdapter adapter = new TwoColumn_ListAdapter(this,R.layout.activity_array_list_columns,userList);
+             listview.setAdapter(adapter);
+
+
+
         }
+
+
+
+
     }
 
 
