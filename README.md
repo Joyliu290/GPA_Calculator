@@ -1,7 +1,7 @@
 # GPA_Calculator
-I created this app in my spare time back in November in hopes to finish it by January so that I can calculate my final GPA.
+I created this app in my spare time back in November in hopes to finish it by January so that I can calculate my final GPA and put it on the app store to help other university students.
 
-Version 1 of this app is now complete. This app lets the users calculate their GPA, and can populate 2 columns, which includes the entry number, and the actual calculated GPA that the users wish to save in the database. The data in the ListView is organized from oldest to newest as the users scroll down. 
+Version 1 of this app is now complete. This app lets users calculate their GPA, and can populate 2 columns, which includes the entry number, and the actual calculated GPA that the users wish to save in the database. The data in the ListView is organized from oldest to newest as the users scroll down with newest at the bottom. 
 
 Below are the steps to see the main Java codes:
  1. Click "app", click "src", select "main"
