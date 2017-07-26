@@ -17,7 +17,6 @@ public class TwoColumn_ListAdapter extends ArrayAdapter<User> {
     private ArrayList<User> users; //the objects to represent in the ListView
     private int mViewResrouceId;
 
-
     public TwoColumn_ListAdapter(Context context, int resource, ArrayList<User> users) {
         super(context, resource, users);
         this.users = users;
@@ -39,7 +38,7 @@ public class TwoColumn_ListAdapter extends ArrayAdapter<User> {
             }
 
             if (GPA5!= null) {
-                GPA5.setText(user.getGPA2()); //sets the text to be displayed
+                GPA5.setText("            "+user.getGPA2()); //sets the text to be displayed
             }
 
         }

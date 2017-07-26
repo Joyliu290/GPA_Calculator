@@ -1,6 +1,7 @@
 package com.example.joyli.firstproject;
 
 import android.database.Cursor;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.widget.ArrayAdapter;
@@ -32,14 +33,13 @@ public class ViewList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_list);
 
-
         ListView listview = (ListView) findViewById(R.id.listview);
         myDB = new SQLdatabaseActivity(this);
 
-
         //Header for ListView
         TextView textView = new TextView(this);
-        textView.setText("Entry                  GPA"); //sets the header
+        textView.setText("    Date of Entry                   Calculated GPA"); //sets the header
+        textView.setTypeface(null, Typeface.BOLD);
         listview.addHeaderView(textView); //adds the header
 
         //populate an ArrayList<String> from the database and then view it
@@ -48,27 +48,19 @@ public class ViewList extends AppCompatActivity {
         int numRows = data.getCount();
         if (numRows==0) {
             Toast.makeText(this, "There are no contents in this list!", Toast.LENGTH_LONG).show();
-
         }
         else {
             int i =0;
             while (data.moveToNext()) { //returns a boolean value
-
                 user = new User(data.getString(0), data.getString(1));
-
                 userList.add(i, user);
-
                 System.out.println(data.getString(0)+ "" + data.getString(1));
                 System.out.println(userList.get(i).getEntry());
                 i++;
-
             }
 
             TwoColumn_ListAdapter adapter = new TwoColumn_ListAdapter(this,R.layout.activity_array_list_columns,userList);
              listview.setAdapter(adapter);
-
-
-
         }
 
 

@@ -22,13 +22,16 @@ import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.util.Date;
+
 public class MainActivity extends AppCompatActivity {
 
     SQLdatabaseActivity myDB;
     Button button_database, button_view;
 
     private static Button button_no;
-
 
     TextView totalview;
     EditText courseweighttxt;
@@ -42,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
     EditText courseweighttxt5;
     EditText coursepercentagetxt5;
 
-
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -55,9 +57,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         onClickButtonListener();
-
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolBar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("GPA SUCCESS");
 
         totalview = (TextView) findViewById(R.id.totalview);
 
@@ -230,19 +232,17 @@ public class MainActivity extends AppCompatActivity {
 
                                           float courseweight5 = Float.parseFloat(courseweighttxt5.getText().toString());
                                           float total5 = courseweight5 * gpv / 10;
-
                                           float totalweight = courseweight + courseweight2 + courseweight3 + courseweight4 + courseweight5;
+                                          DecimalFormat df = new DecimalFormat();
+                                          df.setMaximumFractionDigits(2);
                                           float sum = (total + total2 + total3 + total4 + total5) / totalweight;
-
-                                          totalview.setText(Float.toString(sum));
+                                          totalview.setText(df.format(sum));
                                       }
 
 
 
                                   }
         );
-
-
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
@@ -253,7 +253,6 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
-
         return true;
     }
 
@@ -268,7 +267,6 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -319,16 +317,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String newEntry = totalview.getText().toString();
                 if (totalview.length() != 0) {
-                    AddData(newEntry);
-                    totalview.setText("");
+                    String currentDateString = DateFormat.getDateTimeInstance().format(new Date());
+                    AddData(currentDateString, newEntry);
+                    totalview.setText("0.00");
                 } else {
                     Toast.makeText(MainActivity.this, "CALCULATION ERROR!", Toast.LENGTH_LONG).show();
                 }
 
-
             }});
-
-
         button_view = (Button) findViewById(R.id.button_view);
         button_view.setOnClickListener(
                 new View.OnClickListener() {
@@ -353,8 +349,8 @@ public class MainActivity extends AppCompatActivity {
         );
     }
 
-    public void AddData (String newEntry) {
-        boolean insertData = myDB.addData(newEntry);
+    public void AddData (String newEntry, String date) {
+        boolean insertData = myDB.addData(newEntry, date);
 
         if (insertData ==true) {
 

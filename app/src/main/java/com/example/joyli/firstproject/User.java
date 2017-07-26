@@ -10,15 +10,12 @@ public class User {
     private String GPA2;
 
     public User (String Entry, String GPA) {
-
         ID = Entry;
         GPA2 = GPA;
-
     }
 
     public String getEntry(){
         return ID;
-
     }
 
     public void setEntry (String Entry2){

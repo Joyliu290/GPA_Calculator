@@ -14,7 +14,7 @@
         android:text="TextView"
         android:layout_height="match_parent"
         android:id="@+id/textEntry"
-        android:layout_width="80dp"
+        android:layout_width="150dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -22,11 +22,13 @@
     <TextView
         android:text="TextView"
         android:layout_height="match_parent"
-        android:id="@+id/textGPA"
         android:layout_width="80dp"
+
+        android:id="@+id/textGPA"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/textEntry"
-        android:layout_toEndOf="@+id/textEntry" />
+        android:layout_toEndOf="@+id/textEntry"
+         />
 
 </RelativeLayout>
 

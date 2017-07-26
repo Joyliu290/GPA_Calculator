@@ -14,6 +14,13 @@
     tools:showIn="@layout/activity_main"
     android:touchscreenBlocksFocus="false"
     tools:textAlignment="center">
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/toolBar"
+        >
+
+    </android.support.v7.widget.Toolbar>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -172,6 +179,8 @@
                 android:layout_height="50dp"
                 android:id="@+id/button_database"
                 android:layout_width="120dp"
+                android:background="@color/colorPrimary"
+                tools:textColor="#ffffff"
                 android:onClick="SQLdatabaseActivityClick"/>
 
             <Button
@@ -179,6 +188,8 @@
                 android:layout_width="246dp"
                 android:layout_height="50dp"
                 android:id="@+id/button_view"
+                android:background="@color/colorPrimary"
+                tools:textColor="#ffffff"
                 android:layout_weight="0.72" />
 
             <Button
@@ -186,6 +197,8 @@
                 android:layout_width="120dp"
                 android:layout_height="50dp"
                 android:id="@+id/button_no"
+                android:background="@color/colorPrimary"
+                tools:textColor="#ffffff"
                 android:onClick="ExitScreenClick"/>
 
         </LinearLayout>
