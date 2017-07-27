@@ -14,13 +14,6 @@
     tools:showIn="@layout/activity_main"
     android:touchscreenBlocksFocus="false"
     tools:textAlignment="center">
-    <android.support.v7.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/toolBar"
-        >
-
-    </android.support.v7.widget.Toolbar>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -56,7 +49,8 @@
                 android:hint="Enter Course 1 Percentage"
                 android:layout_below="@+id/courseweighttxt"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                />
 
             <EditText
                 android:layout_width="match_parent"
@@ -65,6 +59,7 @@
                 android:ems="10"
                 android:id="@+id/courseweighttxt"
                 android:hint="Enter Course 1 Weight "
+                style="@style/MyEditTextStyle2"
                 android:editable="false"
                 android:layout_below="@+id/textView3"
                 android:layout_alignParentLeft="true"
@@ -146,8 +141,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/calbtn"
-                android:background="@color/colorPrimary"
-                tools:textColor="#ffffff"
+                style="@style/ButtonStyle"
+                android:layout_marginTop="5dp"
                 android:layout_centerVertical="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -156,7 +151,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="0"
+                android:text="0.00"
                 tools:textAlignment="center"
                 android:textSize="36sp"
                 android:textAllCaps="false"
@@ -171,35 +166,48 @@
                 android:layout_width="wrap_content"
                 android:id="@+id/decision"
                 android:textSize="25sp"
+                android:layout_marginTop="30dp"
                 android:layout_height="50dp"
                 android:autoText="false" />
 
-            <Button
-                android:text="YES"
-                android:layout_height="50dp"
-                android:id="@+id/button_database"
-                android:layout_width="120dp"
-                android:background="@color/colorPrimary"
-                tools:textColor="#ffffff"
-                android:onClick="SQLdatabaseActivityClick"/>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="100dp">
+
+            <ImageView
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:background="@drawable/thumbs_up"
+                android:id="@+id/thumbs_up"
+                android:onClick="SQLdatabaseActivityClick"
+                android:layout_marginLeft="10dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:background="@drawable/thumb_down"
+                android:onClick="doNotSaveClick"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
+                android:layout_alignParentBottom="true"
+                android:layout_toRightOf="@+id/thumbs_up"
+                android:layout_toEndOf="@+id/thumbs_up"
+                android:layout_marginLeft="83dp"
+                android:layout_marginStart="83dp" />
+            </RelativeLayout>
 
             <Button
-                android:text="SHOW ME THE LIST"
+                android:text="SHOW ME SAVED GPA"
                 android:layout_width="246dp"
                 android:layout_height="50dp"
                 android:id="@+id/button_view"
-                android:background="@color/colorPrimary"
-                tools:textColor="#ffffff"
+                android:layout_marginTop="25dp"
+                style="@style/ButtonStyle"
                 android:layout_weight="0.72" />
-
-            <Button
-                android:text="No"
-                android:layout_width="120dp"
-                android:layout_height="50dp"
-                android:id="@+id/button_no"
-                android:background="@color/colorPrimary"
-                tools:textColor="#ffffff"
-                android:onClick="ExitScreenClick"/>
 
         </LinearLayout>
     </ScrollView>

@@ -5,10 +5,17 @@ import android.content.Intent;
 
  */
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.style.ImageSpan;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,6 +32,8 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.util.Date;
+
+import static com.example.joyli.firstproject.R.attr.background;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -57,9 +66,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         onClickButtonListener();
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolBar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("GPA SUCCESS");
+        //getActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#03A9F4")));
 
         totalview = (TextView) findViewById(R.id.totalview);
 
@@ -253,6 +260,8 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        setIconInMenu(menu, R.id.action_home, R.string.action_home, R.mipmap.home);
+        setIconInMenu(menu, R.id.action_database, R.string.action_database, R.mipmap.diskette);
         return true;
     }
 
@@ -264,8 +273,13 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_home) {
             return true;
+        }
+
+        else if (id == R.id.action_database){
+            Intent viewlist = new Intent ("com.example.joyli.firstproject.ViewList");
+            startActivity(viewlist);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -307,24 +321,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickButtonListener() {
-
-        myDB = new SQLdatabaseActivity(this);
-
-        button_database = (Button) findViewById(R.id.button_database);
-
-        button_database.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String newEntry = totalview.getText().toString();
-                if (totalview.length() != 0) {
-                    String currentDateString = DateFormat.getDateTimeInstance().format(new Date());
-                    AddData(currentDateString, newEntry);
-                    totalview.setText("0.00");
-                } else {
-                    Toast.makeText(MainActivity.this, "CALCULATION ERROR!", Toast.LENGTH_LONG).show();
-                }
-
-            }});
         button_view = (Button) findViewById(R.id.button_view);
         button_view.setOnClickListener(
                 new View.OnClickListener() {
@@ -335,18 +331,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
         );
-
-        button_no = (Button) findViewById(R.id.button_no);
-        button_no.setOnClickListener(
-                new View.OnClickListener() {
-
-                    @Override
-                    public void onClick (View v) {
-                        Intent exit_screen = new Intent ("com.example.joyli.firstproject.Exitscreen");
-                        startActivity(exit_screen);
-                    }
-                }
-        );
     }
 
     public void AddData (String newEntry, String date) {
@@ -354,14 +338,35 @@ public class MainActivity extends AppCompatActivity {
 
         if (insertData ==true) {
 
-            Toast.makeText(this, "Data Successfully Inserted!", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "GPA Successfully Inserted!", Toast.LENGTH_LONG).show();
         }
             else {
 
                 Toast.makeText(this, "Something went wrong",Toast.LENGTH_LONG).show();
             }
-
         }
+        public void SQLdatabaseActivityClick (View view){
+            myDB = new SQLdatabaseActivity(this);
+            String newEntry = totalview.getText().toString();
+            if (totalview.length() != 0) {
+                String currentDateString = DateFormat.getDateTimeInstance().format(new Date());
+                AddData(currentDateString, newEntry);
+                totalview.setText("0.00");
+            } else {
+                Toast.makeText(MainActivity.this, "CALCULATION ERROR!", Toast.LENGTH_LONG).show();
+            }
+        }
+        public void doNotSaveClick (View view){
+            Toast.makeText(MainActivity.this, "GPA did NOT insert into database", Toast.LENGTH_LONG).show();
+        }
+
+        public void setIconInMenu(Menu menu, int menuItemId, int labelId, int iconId){
+            MenuItem item = menu.findItem(menuItemId);
+            SpannableStringBuilder builder = new SpannableStringBuilder(" "+getResources().getString(labelId));
+            builder.setSpan(new ImageSpan(this, iconId), 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            item.setTitle(builder);
+        }
+
     }
 
 

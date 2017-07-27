@@ -4,17 +4,16 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher3"
+        android:icon="@mipmap/ic_launcher"
         android:label="GPA SUCCESS"
         android:supportsRtl="true"
-    android:theme="@android:style/Theme.NoTitleBar">>
+    android:theme="@style/AppTheme">>
         <activity
             android:name=".MainActivity"
-            android:label="">
+            android:label="GPA SUCCESS">
             <intent-filter>
-                <action android:name="com.example.joyli.firstproject.MainActivity" />
-
-                <category android:name="android.intent.category.DEFAULT" />
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
@@ -28,28 +27,26 @@
 
         <activity
             android:name=".WelcomeScreen"
-            android:label="">
+            android:label="GPA SUCCESS">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".ViewList"
-            android:label="">
-            <intent-filter>
-                <action android:name="com.example.joyli.firstproject.ViewList" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
+            android:name=".ViewList"
+            android:label="GPA SUCCESS">
+            <intent-filter>
+                <action android:name="com.example.joyli.firstproject.ViewList" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".Exitscreen"
-            android:label="">
+            android:label="GPA SUCCESS">
             <intent-filter>
                 <action android:name="com.example.joyli.firstproject.Exitscreen" />
-
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>

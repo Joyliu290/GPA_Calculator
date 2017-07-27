@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/pressme"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:backgroundTint="@color/colorPrimary"
+        style="@style/ButtonStyle"
         android:textSize="20sp"
         android:textColor="#ffffff"
         android:layout_alignParentBottom="true"
