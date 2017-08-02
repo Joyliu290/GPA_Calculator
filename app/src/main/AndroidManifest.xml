@@ -5,12 +5,12 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="GPA SUCCESS"
+        android:label="GPA Success"
         android:supportsRtl="true"
     android:theme="@style/AppTheme">>
         <activity
             android:name=".MainActivity"
-            android:label="GPA SUCCESS">
+            android:label="GPA Success">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -27,7 +27,7 @@
 
         <activity
             android:name=".WelcomeScreen"
-            android:label="GPA SUCCESS">
+            android:label="GPA Success">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -36,7 +36,7 @@
         </activity>
         <activity
             android:name=".ViewList"
-            android:label="GPA SUCCESS">
+            android:label="GPA Success">
             <intent-filter>
                 <action android:name="com.example.joyli.firstproject.ViewList" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -44,7 +44,7 @@
         </activity>
         <activity
             android:name=".Exitscreen"
-            android:label="GPA SUCCESS">
+            android:label="GPA Success">
             <intent-filter>
                 <action android:name="com.example.joyli.firstproject.Exitscreen" />
                 <category android:name="android.intent.category.DEFAULT" />

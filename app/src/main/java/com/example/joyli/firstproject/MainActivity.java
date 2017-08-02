@@ -358,6 +358,7 @@ public class MainActivity extends AppCompatActivity {
         }
         public void doNotSaveClick (View view){
             Toast.makeText(MainActivity.this, "GPA did NOT insert into database", Toast.LENGTH_LONG).show();
+            totalview.setText("0.00");
         }
 
         public void setIconInMenu(Menu menu, int menuItemId, int labelId, int iconId){
