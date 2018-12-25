@@ -11,4 +11,6 @@ Now I have just published this app and it is now available on Google Play!
 
 Feel free to download this app here: https://play.google.com/store/apps/details?id=com.joyliu.joyli.firstproject&hl=en
 
+Checkout more description of this app on my website: https://joyyliu.wordpress.com/2018/12/22/android-apps-projects#gpasuccess
+
 <a href='https://play.google.com/store/apps/details?id=com.joyliu.joyli.firstproject&hl=en&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/></a>
