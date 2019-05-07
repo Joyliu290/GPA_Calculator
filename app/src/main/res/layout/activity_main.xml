@@ -7,22 +7,6 @@
     android:fitsSystemWindows="true"
     tools:context="com.example.joyli.firstproject.MainActivity">
 
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:background="@android:color/holo_blue_light"
-            app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:title="GPA CALCULATOR"
-            android:textAlignment="center" />
-
-    </android.support.design.widget.AppBarLayout>
-
     <include layout="@layout/content_main" />
 
 </android.support.design.widget.CoordinatorLayout>

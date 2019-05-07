@@ -1,5 +1,6 @@
 package com.example.joyli.firstproject;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,7 +10,7 @@ import android.widget.EditText;
 
 import static com.example.joyli.firstproject.R.id.pressme;
 
-public class WelcomeScreen extends AppCompatActivity {
+public class WelcomeScreen extends Activity {
 
     private static Button pressme;
 

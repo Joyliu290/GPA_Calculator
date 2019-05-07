@@ -17,15 +17,19 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:weightSum="1">
 
             <TextView
-                android:text="GPA Calculator"
+                android:text="GPA Success"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView3"
@@ -39,10 +43,23 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="number"
+                android:ems="10"
+                android:id="@+id/coursepercentagetxt"
+                android:hint="Enter Course 1 Percentage"
+                android:layout_below="@+id/courseweighttxt"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:inputType="numberDecimal"
                 android:ems="10"
                 android:id="@+id/courseweighttxt"
                 android:hint="Enter Course 1 Weight "
+                style="@style/MyEditTextStyle2"
                 android:editable="false"
                 android:layout_below="@+id/textView3"
                 android:layout_alignParentLeft="true"
@@ -53,9 +70,9 @@
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:ems="10"
-                android:id="@+id/coursepercentagetxt"
-                android:hint="Enter Course 1 Percentage"
-                android:layout_below="@+id/courseweighttxt"
+                android:id="@+id/coursepercentagetxt2"
+                android:hint="Enter Course 2 Percentage"
+                android:layout_above="@+id/calbtn"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
@@ -76,11 +93,8 @@
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:ems="10"
-                android:id="@+id/coursepercentagetxt2"
-                android:hint="Enter Course 2 Percentage"
-                android:layout_above="@+id/calbtn"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:id="@+id/coursepercentagetxt3"
+                android:hint="Enter Course 3 Percentage" />
 
             <EditText
                 android:layout_width="match_parent"
@@ -95,8 +109,8 @@
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:ems="10"
-                android:id="@+id/coursepercentagetxt3"
-                android:hint="Enter Course 3 Percentage" />
+                android:id="@+id/coursepercentagetxt4"
+                android:hint="Enter Course 4 Percentage" />
 
             <EditText
                 android:layout_width="match_parent"
@@ -111,8 +125,8 @@
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:ems="10"
-                android:id="@+id/coursepercentagetxt4"
-                android:hint="Enter Course 4 Percentage" />
+                android:id="@+id/coursepercentagetxt5"
+                android:hint="Enter Course 5 Percentage" />
 
             <EditText
                 android:layout_width="match_parent"
@@ -122,18 +136,22 @@
                 android:id="@+id/courseweighttxt5"
                 android:hint="Enter Course 5 Weight" />
 
-            <EditText
+            <Button
+                android:text="CALCULATE"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number"
-                android:ems="10"
-                android:id="@+id/coursepercentagetxt5"
-                android:hint="Enter Course 5 Percentage" />
+                android:id="@+id/calbtn"
+                style="@style/ButtonStyle"
+                android:layout_marginTop="5dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:textSize="18sp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="0"
+                android:text="0.00"
                 tools:textAlignment="center"
                 android:textSize="36sp"
                 android:textAllCaps="false"
@@ -143,37 +161,53 @@
                 android:layout_alignParentStart="true"
                 android:layout_marginTop="19dp" />
 
-            <Button
-                android:text="CALCULATE"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/calbtn"
-                android:background="@android:color/holo_blue_light"
-                tools:textColor="#ffffff"
-                android:layout_centerVertical="true"
+            <TextView
+                android:text="Record this GPA? "
+                android:layout_width="wrap_content"
+                android:id="@+id/decision"
+                android:textSize="25sp"
+                android:layout_marginTop="30dp"
+                android:layout_height="50dp"
+                android:autoText="false" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="100dp">
+
+            <ImageView
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:background="@drawable/thumbs_up"
+                android:id="@+id/thumbs_up"
+                android:onClick="SQLdatabaseActivityClick"
+                android:layout_marginLeft="10dp"
+                android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
-            <TextView
-                android:text="Record this GPA? "
-                android:layout_width="match_parent"
-                android:id="@+id/decision"
-                android:layout_height="50dp"
-                android:textSize="25sp" />
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:background="@drawable/thumb_down"
+                android:onClick="doNotSaveClick"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
+                android:layout_alignParentBottom="true"
+                android:layout_toRightOf="@+id/thumbs_up"
+                android:layout_toEndOf="@+id/thumbs_up"
+                android:layout_marginLeft="83dp"
+                android:layout_marginStart="83dp" />
+            </RelativeLayout>
 
             <Button
-                android:text="YES"
+                android:text="SHOW ME SAVED GPA"
+                android:layout_width="246dp"
                 android:layout_height="50dp"
-                android:id="@+id/button_database"
-                android:layout_width="120dp"
-                android:onClick="SQLdatabaseActivityClick"/>
-
-            <Button
-                android:text="No"
-                android:layout_width="120dp"
-                android:layout_height="50dp"
-                android:id="@+id/button_no"
-                android:onClick="ExitScreenClick"/>
+                android:id="@+id/button_view"
+                android:layout_marginTop="25dp"
+                style="@style/ButtonStyle"
+                android:layout_weight="0.72" />
 
         </LinearLayout>
     </ScrollView>

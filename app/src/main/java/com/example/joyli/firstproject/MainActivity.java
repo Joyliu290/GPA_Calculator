@@ -4,27 +4,41 @@ import android.content.Intent;
 /*import android.database.sqlite.SQLiteDatabase;
 
  */
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.style.ImageSpan;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.util.Date;
+
+import static com.example.joyli.firstproject.R.attr.background;
+
 public class MainActivity extends AppCompatActivity {
 
-    /**SQLdatabaseActivity gpatable;
-     *
-     */
+    SQLdatabaseActivity myDB;
+    Button button_database, button_view;
 
     private static Button button_no;
 
@@ -40,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
     EditText courseweighttxt5;
     EditText coursepercentagetxt5;
 
-
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -52,213 +65,203 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        onClickButtonListener ();
-
-
-        /**gpatable = new SQLdatabaseActivity(this);
-         *
-         */
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
+        onClickButtonListener();
+        //getActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#03A9F4")));
 
         totalview = (TextView) findViewById(R.id.totalview);
-
 
         courseweighttxt = (EditText) findViewById(R.id.courseweighttxt);
         coursepercentagetxt = (EditText) findViewById(R.id.coursepercentagetxt);
         courseweighttxt2 = (EditText) findViewById(R.id.courseweighttxt2);
         coursepercentagetxt2 = (EditText) findViewById(R.id.coursepercentagetxt2);
         courseweighttxt3 = (EditText) findViewById(R.id.courseweighttxt3);
-        coursepercentagetxt3= (EditText) findViewById(R.id.coursepercentagetxt3);
+        coursepercentagetxt3 = (EditText) findViewById(R.id.coursepercentagetxt3);
         courseweighttxt4 = (EditText) findViewById(R.id.courseweighttxt4);
         coursepercentagetxt4 = (EditText) findViewById(R.id.coursepercentagetxt4);
         courseweighttxt5 = (EditText) findViewById(R.id.courseweighttxt5);
-        coursepercentagetxt5 = (EditText) findViewById(R.id. coursepercentagetxt5);
-
+        coursepercentagetxt5 = (EditText) findViewById(R.id.coursepercentagetxt5);
 
         final Button calbtn = (Button) findViewById(R.id.calbtn);
         calbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+                                      @Override
+                                      public void onClick(View view) {
+
+                                          float gpv;
+                                          float coursepercentage = Float.parseFloat(coursepercentagetxt.getText().toString());
+
+                                          if (coursepercentage >= 50 && coursepercentage <= 52) {
+
+                                              gpv = 7;
+                                          } else if (coursepercentage > 52 && coursepercentage <= 56) {
+                                              gpv = 10;
+                                          } else if (coursepercentage > 56 && coursepercentage <= 59) {
+                                              gpv = 13;
+                                          } else if (coursepercentage > 59 && coursepercentage <= 62) {
+                                              gpv = 17;
+                                          } else if (coursepercentage > 62 && coursepercentage <= 66) {
+                                              gpv = 20;
+                                          } else if (coursepercentage > 66 && coursepercentage <= 69) {
+                                              gpv = 23;
+                                          } else if (coursepercentage > 69 && coursepercentage <= 72) {
+                                              gpv = 27;
+                                          } else if (coursepercentage > 72 && coursepercentage <= 76) {
+                                              gpv = 30;
+                                          } else if (coursepercentage > 76 && coursepercentage <= 79) {
+                                              gpv = 33;
+                                          } else if (coursepercentage > 79 && coursepercentage <= 84) {
+                                              gpv = 37;
+                                          } else {
+                                              gpv = 40;
+                                          }
+
+                                          float courseweight = Float.parseFloat(courseweighttxt.getText().toString());
+                                          float total = courseweight * gpv / 10;
+
+                                          float coursepercentage2 = Float.parseFloat(coursepercentagetxt2.getText().toString());
+
+                                          if (coursepercentage2 >= 50 && coursepercentage2 <= 52) {
+
+                                              gpv = 7;
+                                          } else if (coursepercentage2 > 52 && coursepercentage2 <= 56) {
+                                              gpv = 10;
+                                          } else if (coursepercentage2 > 56 && coursepercentage2 <= 59) {
+                                              gpv = 13;
+                                          } else if (coursepercentage2 > 59 && coursepercentage2 <= 62) {
+                                              gpv = 17;
+                                          } else if (coursepercentage2 > 62 && coursepercentage2 <= 66) {
+                                              gpv = 20;
+                                          } else if (coursepercentage2 > 66 && coursepercentage2 <= 69) {
+                                              gpv = 23;
+                                          } else if (coursepercentage2 > 69 && coursepercentage2 <= 72) {
+                                              gpv = 27;
+                                          } else if (coursepercentage2 > 72 && coursepercentage2 <= 76) {
+                                              gpv = 30;
+                                          } else if (coursepercentage2 > 76 && coursepercentage2 <= 79) {
+                                              gpv = 33;
+                                          } else if (coursepercentage2 > 79 && coursepercentage2 <= 84) {
+                                              gpv = 37;
+                                          } else {
+                                              gpv = 40;
+                                          }
+
+                                          float courseweight2 = Float.parseFloat(courseweighttxt2.getText().toString());
+                                          float total2 = courseweight2 * gpv / 10;
 
 
-                float gpv;
-                float coursepercentage = Float.parseFloat(coursepercentagetxt.getText().toString());
+                                          float coursepercentage3 = Float.parseFloat(coursepercentagetxt3.getText().toString());
 
-                if (coursepercentage >= 50 && coursepercentage <= 52) {
+                                          if (coursepercentage3 >= 50 && coursepercentage3 <= 52) {
 
-                    gpv = 7;
-                } else if (coursepercentage > 52 && coursepercentage <= 56) {
-                    gpv = 10;
-                } else if (coursepercentage > 56 && coursepercentage <= 59) {
-                    gpv = 13;
-                } else if (coursepercentage > 59 && coursepercentage <= 62) {
-                    gpv = 17;
-                } else if (coursepercentage > 62 && coursepercentage <= 66) {
-                    gpv = 20;
-                } else if (coursepercentage > 66 && coursepercentage <= 69) {
-                    gpv = 23;
-                } else if (coursepercentage > 69 && coursepercentage <= 72) {
-                    gpv = 27;
-                } else if (coursepercentage > 72 && coursepercentage <= 76) {
-                    gpv = 30;
-                } else if (coursepercentage > 76 && coursepercentage <= 79) {
-                    gpv = 33;
-                } else if (coursepercentage > 79 && coursepercentage <= 84) {
-                    gpv = 37;
-                } else {
-                    gpv = 40;
-                }
+                                              gpv = 7;
+                                          } else if (coursepercentage3 > 52 && coursepercentage3 <= 56) {
+                                              gpv = 10;
+                                          } else if (coursepercentage3 > 56 && coursepercentage3 <= 59) {
+                                              gpv = 13;
+                                          } else if (coursepercentage3 > 59 && coursepercentage3 <= 62) {
+                                              gpv = 17;
+                                          } else if (coursepercentage3 > 62 && coursepercentage3 <= 66) {
+                                              gpv = 20;
+                                          } else if (coursepercentage3 > 66 && coursepercentage3 <= 69) {
+                                              gpv = 23;
+                                          } else if (coursepercentage3 > 69 && coursepercentage3 <= 72) {
+                                              gpv = 27;
+                                          } else if (coursepercentage3 > 72 && coursepercentage3 <= 76) {
+                                              gpv = 30;
+                                          } else if (coursepercentage3 > 76 && coursepercentage3 <= 79) {
+                                              gpv = 33;
+                                          } else if (coursepercentage3 > 79 && coursepercentage3 <= 84) {
+                                              gpv = 37;
+                                          } else {
+                                              gpv = 40;
+                                          }
 
-                float courseweight = Float.parseFloat(courseweighttxt.getText().toString());
-                float total = courseweight * gpv / 10;
-
-                float coursepercentage2 = Float.parseFloat(coursepercentagetxt2.getText().toString());
-
-                if (coursepercentage2 >= 50 && coursepercentage2 <= 52) {
-
-                    gpv = 7;
-                } else if (coursepercentage2 > 52 && coursepercentage2 <= 56) {
-                    gpv = 10;
-                } else if (coursepercentage2 > 56 && coursepercentage2 <= 59) {
-                    gpv = 13;
-                } else if (coursepercentage2 > 59 && coursepercentage2 <= 62) {
-                    gpv = 17;
-                } else if (coursepercentage2 > 62 && coursepercentage2 <= 66) {
-                    gpv = 20;
-                } else if (coursepercentage2 > 66 && coursepercentage2 <= 69) {
-                    gpv = 23;
-                } else if (coursepercentage2 > 69 && coursepercentage2 <= 72) {
-                    gpv = 27;
-                } else if (coursepercentage2 > 72 && coursepercentage2 <= 76) {
-                    gpv = 30;
-                } else if (coursepercentage2 > 76 && coursepercentage2 <= 79) {
-                    gpv = 33;
-                } else if (coursepercentage2 > 79 && coursepercentage2 <= 84) {
-                    gpv = 37;
-                } else {
-                    gpv = 40;
-                }
-
-                float courseweight2 = Float.parseFloat(courseweighttxt2.getText().toString());
-                float total2 = courseweight2 * gpv / 10;
+                                          float courseweight3 = Float.parseFloat(courseweighttxt3.getText().toString());
+                                          float total3 = courseweight3 * gpv / 10;
 
 
-                float coursepercentage3 = Float.parseFloat(coursepercentagetxt3.getText().toString());
+                                          float coursepercentage4 = Float.parseFloat(coursepercentagetxt4.getText().toString());
 
-                if (coursepercentage3 >= 50 && coursepercentage3 <= 52) {
+                                          if (coursepercentage4 >= 50 && coursepercentage4 <= 52) {
 
-                    gpv = 7;
-                } else if (coursepercentage3 > 52 && coursepercentage3 <= 56) {
-                    gpv = 10;
-                } else if (coursepercentage3 > 56 && coursepercentage3 <= 59) {
-                    gpv = 13;
-                } else if (coursepercentage3 > 59 && coursepercentage3 <= 62) {
-                    gpv = 17;
-                } else if (coursepercentage3 > 62 && coursepercentage3 <= 66) {
-                    gpv = 20;
-                } else if (coursepercentage3 > 66 && coursepercentage3 <= 69) {
-                    gpv = 23;
-                } else if (coursepercentage3 > 69 && coursepercentage3 <= 72) {
-                    gpv = 27;
-                } else if (coursepercentage3 > 72 && coursepercentage3 <= 76) {
-                    gpv = 30;
-                } else if (coursepercentage3 > 76 && coursepercentage3 <= 79) {
-                    gpv = 33;
-                } else if (coursepercentage3 > 79 && coursepercentage3 <= 84) {
-                    gpv = 37;
-                } else {
-                    gpv = 40;
-                }
+                                              gpv = 7;
+                                          } else if (coursepercentage4 > 52 && coursepercentage4 <= 56) {
+                                              gpv = 10;
+                                          } else if (coursepercentage4 > 56 && coursepercentage4 <= 59) {
+                                              gpv = 13;
+                                          } else if (coursepercentage4 > 59 && coursepercentage4 <= 62) {
+                                              gpv = 17;
+                                          } else if (coursepercentage4 > 62 && coursepercentage4 <= 66) {
+                                              gpv = 20;
+                                          } else if (coursepercentage4 > 66 && coursepercentage4 <= 69) {
+                                              gpv = 23;
+                                          } else if (coursepercentage4 > 69 && coursepercentage4 <= 72) {
+                                              gpv = 27;
+                                          } else if (coursepercentage4 > 72 && coursepercentage4 <= 76) {
+                                              gpv = 30;
+                                          } else if (coursepercentage4 > 76 && coursepercentage4 <= 79) {
+                                              gpv = 33;
+                                          } else if (coursepercentage4 > 79 && coursepercentage4 <= 84) {
+                                              gpv = 37;
+                                          } else {
+                                              gpv = 40;
+                                          }
 
-                float courseweight3 = Float.parseFloat(courseweighttxt3.getText().toString());
-                float total3 = courseweight3 * gpv / 10;
-
-
-                float coursepercentage4 = Float.parseFloat(coursepercentagetxt4.getText().toString());
-
-                if (coursepercentage4 >= 50 && coursepercentage4 <= 52) {
-
-                    gpv = 7;
-                } else if (coursepercentage4 > 52 && coursepercentage4 <= 56) {
-                    gpv = 10;
-                } else if (coursepercentage4 > 56 && coursepercentage4 <= 59) {
-                    gpv = 13;
-                } else if (coursepercentage4 > 59 && coursepercentage4 <= 62) {
-                    gpv = 17;
-                } else if (coursepercentage4 > 62 && coursepercentage4 <= 66) {
-                    gpv = 20;
-                } else if (coursepercentage4 > 66 && coursepercentage4 <= 69) {
-                    gpv = 23;
-                } else if (coursepercentage4 > 69 && coursepercentage4 <= 72) {
-                    gpv = 27;
-                } else if (coursepercentage4 > 72 && coursepercentage4 <= 76) {
-                    gpv = 30;
-                } else if (coursepercentage4 > 76 && coursepercentage4 <= 79) {
-                    gpv = 33;
-                } else if (coursepercentage4 > 79 && coursepercentage4 <= 84) {
-                    gpv = 37;
-                } else {
-                    gpv = 40;
-                }
-
-                float courseweight4 = Float.parseFloat(courseweighttxt4.getText().toString());
-                float total4 = courseweight4 * gpv / 10;
+                                          float courseweight4 = Float.parseFloat(courseweighttxt4.getText().toString());
+                                          float total4 = courseweight4 * gpv / 10;
 
 
-                float coursepercentage5 = Float.parseFloat(coursepercentagetxt5.getText().toString());
+                                          float coursepercentage5 = Float.parseFloat(coursepercentagetxt5.getText().toString());
 
-                if (coursepercentage5 >= 50 && coursepercentage5 <= 52) {
+                                          if (coursepercentage5 >= 50 && coursepercentage5 <= 52) {
 
-                    gpv = 7;
-                } else if (coursepercentage5 > 52 && coursepercentage5 <= 56) {
-                    gpv = 10;
-                } else if (coursepercentage5 > 56 && coursepercentage5 <= 59) {
-                    gpv = 13;
-                } else if (coursepercentage5 > 59 && coursepercentage5 <= 62) {
-                    gpv = 17;
-                } else if (coursepercentage5 > 62 && coursepercentage5 <= 66) {
-                    gpv = 20;
-                } else if (coursepercentage5 > 66 && coursepercentage5 <= 69) {
-                    gpv = 23;
-                } else if (coursepercentage5 > 69 && coursepercentage5 <= 72) {
-                    gpv = 27;
-                } else if (coursepercentage5 > 72 && coursepercentage5 <= 76) {
-                    gpv = 30;
-                } else if (coursepercentage5 > 76 && coursepercentage5 <= 79) {
-                    gpv = 33;
-                } else if (coursepercentage5 > 79 && coursepercentage5 <= 84) {
-                    gpv = 37;
-                } else {
-                    gpv = 40;
-                }
+                                              gpv = 7;
+                                          } else if (coursepercentage5 > 52 && coursepercentage5 <= 56) {
+                                              gpv = 10;
+                                          } else if (coursepercentage5 > 56 && coursepercentage5 <= 59) {
+                                              gpv = 13;
+                                          } else if (coursepercentage5 > 59 && coursepercentage5 <= 62) {
+                                              gpv = 17;
+                                          } else if (coursepercentage5 > 62 && coursepercentage5 <= 66) {
+                                              gpv = 20;
+                                          } else if (coursepercentage5 > 66 && coursepercentage5 <= 69) {
+                                              gpv = 23;
+                                          } else if (coursepercentage5 > 69 && coursepercentage5 <= 72) {
+                                              gpv = 27;
+                                          } else if (coursepercentage5 > 72 && coursepercentage5 <= 76) {
+                                              gpv = 30;
+                                          } else if (coursepercentage5 > 76 && coursepercentage5 <= 79) {
+                                              gpv = 33;
+                                          } else if (coursepercentage5 > 79 && coursepercentage5 <= 84) {
+                                              gpv = 37;
+                                          } else {
+                                              gpv = 40;
+                                          }
 
-                float courseweight5 = Float.parseFloat(courseweighttxt5.getText().toString());
-                float total5 = courseweight5 * gpv / 10;
+                                          float courseweight5 = Float.parseFloat(courseweighttxt5.getText().toString());
+                                          float total5 = courseweight5 * gpv / 10;
+                                          float totalweight = courseweight + courseweight2 + courseweight3 + courseweight4 + courseweight5;
+                                          DecimalFormat df = new DecimalFormat();
+                                          df.setMaximumFractionDigits(2);
+                                          float sum = (total + total2 + total3 + total4 + total5) / totalweight;
+                                          totalview.setText(df.format(sum));
+                                      }
 
-                float totalweight = courseweight + courseweight2 + courseweight3 + courseweight4 + courseweight5;
-                float sum = (total + total2 + total3 + total4 + total5) / totalweight;
 
 
-                totalview.setText(Float.toString(sum));
-
-            };
-
-        }
+                                  }
         );
-
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+        //"this" is the reference to current object
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
-
+        setIconInMenu(menu, R.id.action_home, R.string.action_home, R.mipmap.home);
+        setIconInMenu(menu, R.id.action_database, R.string.action_database, R.mipmap.diskette);
         return true;
     }
 
@@ -270,10 +273,14 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_home) {
             return true;
         }
 
+        else if (id == R.id.action_database){
+            Intent viewlist = new Intent ("com.example.joyli.firstproject.ViewList");
+            startActivity(viewlist);
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -313,33 +320,56 @@ public class MainActivity extends AppCompatActivity {
         client.disconnect();
     }
 
-    /**public void SQLdatabaseActivityClick(View view) {
-
-        Intent screen2 = new Intent(MainActivity.this, SQLdatabaseActivity.class);
-        startActivity(screen2);
-
-    }
-
-
-*/
-
-
-    public void onClickButtonListener (){
-        button_no = (Button) findViewById(R.id.button_no);
-        button_no.setOnClickListener(
+    public void onClickButtonListener() {
+        button_view = (Button) findViewById(R.id.button_view);
+        button_view.setOnClickListener(
                 new View.OnClickListener() {
-
-
                     @Override
-                    public void onClick (View v) {
-
-                        Intent exit_screen = new Intent ("com.example.joyli.firstproject.Exitscreen");
-                        startActivity(exit_screen);
+                    public void onClick(View view) {
+                        Intent viewlist = new Intent ("com.example.joyli.firstproject.ViewList");
+                        startActivity(viewlist);
                     }
-
                 }
         );
     }
 
+    public void AddData (String newEntry, String date) {
+        boolean insertData = myDB.addData(newEntry, date);
 
-}
+        if (insertData ==true) {
+
+            Toast.makeText(this, "GPA Successfully Inserted!", Toast.LENGTH_LONG).show();
+        }
+            else {
+
+                Toast.makeText(this, "Something went wrong",Toast.LENGTH_LONG).show();
+            }
+        }
+        public void SQLdatabaseActivityClick (View view){
+            myDB = new SQLdatabaseActivity(this);
+            String newEntry = totalview.getText().toString();
+            if (totalview.length() != 0) {
+                String currentDateString = DateFormat.getDateTimeInstance().format(new Date());
+                AddData(currentDateString, newEntry);
+                totalview.setText("0.00");
+            } else {
+                Toast.makeText(MainActivity.this, "CALCULATION ERROR!", Toast.LENGTH_LONG).show();
+            }
+        }
+        public void doNotSaveClick (View view){
+            Toast.makeText(MainActivity.this, "GPA did NOT insert into database", Toast.LENGTH_LONG).show();
+            totalview.setText("0.00");
+        }
+
+        public void setIconInMenu(Menu menu, int menuItemId, int labelId, int iconId){
+            MenuItem item = menu.findItem(menuItemId);
+            SpannableStringBuilder builder = new SpannableStringBuilder(" "+getResources().getString(labelId));
+            builder.setSpan(new ImageSpan(this, iconId), 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            item.setTitle(builder);
+        }
+
+    }
+
+
+
+
